@@ -40,3 +40,15 @@ jobs:
           rm -f LICENSE NOTICE cf.tgz
           ./cf7 login -a ${CF_API} -u ${CF_USERNAME} -p ${CF_PASSWORD} -o ${CF_ORG} -s ${CF_SPACE}
           ./cf7 push --strategy rolling
+      - name: E2E test
+        if: github.ref == 'refs/heads/master'
+        env:
+          TARGET_URL: ${{ secrets.TARGET_URL }}
+        run: |
+          set -ex
+          TODO_ID=$(curl -s ${TARGET_URL}/todos -H "Content-Type: application/json" -d '{"todoTitle": "Demo"}' | jq -r .todoId)
+          curl -s ${TARGET_URL}/todos
+          curl -s ${TARGET_URL}/todos/${TODO_ID}
+          curl -s -X PUT ${TARGET_URL}/todos/${TODO_ID} -H "Content-Type: application/json" -d '{"finished": "true"}'
+          curl -s -X DELETE ${TARGET_URL}/todos/${TODO_ID}
+          curl -s ${TARGET_URL}/todos
