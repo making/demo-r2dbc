@@ -7,12 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpHeaders;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import reactor.test.StepVerifier;
 
 import java.net.URI;
@@ -23,11 +18,8 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 class TodoControllerTest {
-    @Container
-    static MySQLContainer<?> mysql = new MySQLContainer<>();
     private final TodoRepository todoRepository;
     private final int port;
     private final WebTestClient webClient;
@@ -50,13 +42,6 @@ class TodoControllerTest {
         this.todoRepository = todoRepository;
         this.port = port;
         this.webClient = webClient;
-    }
-
-    @DynamicPropertySource
-    static void mySqlProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.r2dbc.url", () -> mysql.getJdbcUrl().replace("jdbc:", "r2dbc:"));
-        registry.add("spring.r2dbc.username", mysql::getUsername);
-        registry.add("spring.r2dbc.password", mysql::getPassword);
     }
 
     @BeforeEach
