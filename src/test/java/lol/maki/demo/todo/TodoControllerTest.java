@@ -57,7 +57,7 @@ class TodoControllerTest {
                 .exchange()
                 .expectStatus()
                 .isOk()
-                .expectBody(String.class).isEqualTo("{\"status\":\"UP\"}");
+                .expectBody(String.class).isEqualTo("{\"status\":\"UP\",\"groups\":[\"liveness\",\"readiness\"]}");
     }
 
     @Test
