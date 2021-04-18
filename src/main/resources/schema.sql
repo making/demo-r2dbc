@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS todo
     created_at TIMESTAMP    NOT NULL,
     updated_at TIMESTAMP    NULL
 );
-CREATE INDEX todo_created_at ON todo (created_at);
-CREATE INDEX todo_updated_at ON todo (updated_at);
+CREATE INDEX IF NOT EXISTS todo_created_at ON todo (created_at);
+CREATE INDEX IF NOT EXISTS todo_updated_at ON todo (updated_at);
