@@ -29,3 +29,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+*.crt
+*.csr
+*.key
+*.srl
