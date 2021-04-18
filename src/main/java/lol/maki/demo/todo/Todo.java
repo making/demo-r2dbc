@@ -1,9 +1,11 @@
 package lol.maki.demo.todo;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
+@Table("todo")
 public class Todo {
     private static final long serialVersionUID = 1L;
     @Id
