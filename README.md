@@ -5,9 +5,12 @@ Spring Boot + Spring Data R2DBC + TestContainers
 ## Usage
 
 ```
-brew install mysql
-brew services start mysql
-mysql -u root -e 'create database demo_r2dbc;'
+docker run --rm \
+ -p 5432:5432 \
+ -e POSTGRES_DB=demo \
+ -e POSTGRES_USER=demo \
+ -e POSTGRES_PASSWORD=demo \
+ bitnami/postgresql:11.11.0-debian-10-r59
 ```
 
 ```

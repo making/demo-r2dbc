@@ -7,7 +7,7 @@ applications:
     services:
     - todo-db
     env:
-      SPRING_R2DBC_URL: r2dbc:mysql://${vcap.services.todo-db.credentials.hostname}:${vcap.services.todo-db.credentials.port}/${vcap.services.todo-db.credentials.name}
+      SPRING_R2DBC_URL: r2dbc:postgresql://${vcap.services.todo-db.credentials.hostname}:${vcap.services.todo-db.credentials.port}/${vcap.services.todo-db.credentials.name}
       SPRING_R2DBC_USERNAME: ${vcap.services.todo-db.credentials.username}
       SPRING_R2DBC_PASSWORD: ${vcap.services.todo-db.credentials.password}
       JAVA_OPTS: -XX:ReservedCodeCacheSize=32M -Xss512k -Duser.timezone=Asia/Tokyo
