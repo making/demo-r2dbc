@@ -1,7 +1,7 @@
 applications:
   - name: demo-r2dbc
     path: target/demo-r2dbc-0.0.1-SNAPSHOT.jar
-    memory: 200m
+    memory: 256m
     health-check-type: http
     health-check-http-endpoint: /actuator/health
     services:
