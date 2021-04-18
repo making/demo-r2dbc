@@ -12,3 +12,5 @@ applications:
       SPRING_R2DBC_PASSWORD: ${vcap.services.todo-db.credentials.password}
       JAVA_OPTS: -XX:ReservedCodeCacheSize=32M -Xss512k -Duser.timezone=Asia/Tokyo
       JBP_CONFIG_OPEN_JDK_JRE: '{memory_calculator: {stack_threads: 15}, jre: {version: 11.+}}'
+      INFO_JAVA_VERSION: '${java.vm.version} / ${java.vm.name}'
+      INFO_JAVA_VENDOR: '${java.vm.vendor}'
